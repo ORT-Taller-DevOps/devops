@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "payments-service-example"
+  labels:
+    app: "payments-service-example"
+    env: "stg"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "payments-service-example"
+  template:
+    metadata:
+      labels:
+        app: "payments-service-example"
+    spec:
+      nodeSelector:
+        env: "stg"
+      containers:
+        - name: "payments-service-example"
+          image: "894577096821.dkr.ecr.us-east-1.amazonaws.com/payments-service-example:latest-stg"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: 256Mi
+              cpu: "0.5"
+            limits:
+              memory: 512Mi
+              cpu: "1"
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 90
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 90
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "payments-service-example-service"
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  selector:
+    app: "payments-service-example"
+    env: "stg"
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
