@@ -1,25 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "products-service-example"
+  name: "shipping-service-example"
   labels:
-    app: "products-service-example"
+    app: "shipping-service-example"
     env: "prod"
 spec:
+  strategy:
+    type: Recreate
   replicas: 2
   selector:
     matchLabels:
-      app: "products-service-example"
+      app: "shipping-service-example"
   template:
     metadata:
       labels:
-        app: "products-service-example"
+        app: "shipping-service-example"
     spec:
       nodeSelector:
         env: "prod"
       containers:
-        - name: "products-service-example"
-          image: "894577096821.dkr.ecr.us-east-1.amazonaws.com/products-service-example:latest-prod"
+        - name: "shipping-service-example"
+          image: "894577096821.dkr.ecr.us-east-1.amazonaws.com/shipping-service-example:latest-prod"
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -44,12 +46,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: "products-service-example-service"
+  name: "shipping-service-example-service"
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
   selector:
-    app: "products-service-example"
+    app: "shipping-service-example"
     env: "prod"
   ports:
     - protocol: TCP
