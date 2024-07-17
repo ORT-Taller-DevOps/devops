@@ -1,5 +1,6 @@
 variable "repository" {
-  type = string
+  type    = string
+  default = "devops"
 }
 
 variable "aws_access_key_id" {
@@ -22,6 +23,10 @@ variable "aws_region" {
 variable "aws_profile" {
   type    = string
   default = "default"
+}
+
+variable "aws_s3_bucket_name" {
+  type = string
 }
 
 variable "role_arn" {
