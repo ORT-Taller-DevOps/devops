@@ -51,13 +51,9 @@ Para la infraestructura se logró una modernización que destaca por adoptar un 
 
 ### Guía
 #### Pre-requsitos
-Para poder generar la infraestructura necesaria, se deben cumplir los siguientes pre-requisitos:
-- **Las credenciales de AWS deben estar configuradas** 
-- **Checkout al repositorio de Devops**
-- **Generar la infraestructura posicionados dentro de la carpeta Terraform**
-
-También, debe asegurarse de que los servicios back-end cuenten con un endpoint `GET /health`. De otra manera, al ser deployados estos fallarán los health checks y la instancia será deshabilitada.  
+1\. Debe asegurarse de que los servicios back-end cuenten con un endpoint `GET /health`. De otra manera, al ser deployados estos fallarán los health checks y la instancia será deshabilitada.  
 Un ejemplo de código que puede añadir es el siguiente:
+
 ```java
 package uy.edu.ort.devops.paymentsserviceexample.endpoints; // <-- Asegúrese de cambiar acordemente
 
@@ -76,15 +72,27 @@ public class HealthCheckEndpoint {
 }
 ```
 
-Las credenciales de AWS que se deben obtener son: el Access Key ID, Secret Access Key, y el Session Token.  
+2\. Las credenciales de AWS deben estar configuradas.  
+Se debe obtener de AWS el Access Key ID, Secret Access Key, el Session Token, y el ARN del rol que utilizará.  
 Una vez obtenidas, se deben generar los siguientes secrets en los repositorios de back-end y front-end, con sus respectivos valores:
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_SESSION_TOKEN`
 
-Luego de haber cumplido con estos pre requisitos y haber generado la infraestructura necesaria es de importancia saber que tanto el repositorio de Front-End como el de Back-End implementan CI/CD. Esto quiere decir que, a la hora de realizar un merge a una de las ramas estables (development, release o main), el nuevo código será automáticamente desplegado en su ambiente correspondiente (development, staging o production, respectivamente).
+3\. Clonar el repositorio `devops`, pararse sobre el directorio "terraform", y ejecutar la siguiente secuencia de comandos: 
 
-Por último pero no menos importante, a la hora de desplegar Orders se debe de tener en cuenta lo siguiente:
+```bash
+$ terraform init
+$ terraform validate # Validar que no de error antes de continuar
+
+# Para los siguientes comandos, se le pedirá ingresar datos
+$ terraform plan out=plan # Para visualizar la acción a realizar
+$ terraform apply "plan" # Para, luego de una confirmación, desplegar la infraestructura
+```
+
+Luego de haber cumplido con los pre-requisitos y haber generado la infraestructura necesaria es de importancia saber que tanto el repositorio de front-end como el de back-end implementan CI/CD. Esto quiere decir que, a la hora de realizar un merge a una de las ramas estables (development, release o main), el nuevo código será automáticamente desplegado en su ambiente correspondiente (development, staging o production, respectivamente).
+
+Por último, pero no menos importante, a la hora de desplegar Orders se debe de tener en cuenta lo siguiente:
 - Existe una dependencia con los otros servicios, los mismos deben de estar desplegados para que Orders funcione en su totalidad.
 - Se debe adquirir el DNS de los Load Balancer.
 - Ingresar los DNS obtenidos anteriormente en las variables correspondientes en el repositorio de Orders.
