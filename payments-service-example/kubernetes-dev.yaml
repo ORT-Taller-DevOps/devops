@@ -12,12 +12,15 @@ spec:
   selector:
     matchLabels:
       app: "payments-service-example"
+      env: "dev"
   template:
     metadata:
       labels:
         app: "payments-service-example"
+        env: "dev"
     spec:
       nodeSelector:
+        app: "payments-service-example"
         env: "dev"
       containers:
         - name: "payments-service-example"
@@ -35,11 +38,13 @@ spec:
           readinessProbe:
             tcpSocket:
               port: 8080
+              path: /health
             initialDelaySeconds: 90
             periodSeconds: 10
           livenessProbe:
             tcpSocket:
               port: 8080
+              path: /health
             initialDelaySeconds: 90
             periodSeconds: 10
 ---
@@ -55,5 +60,5 @@ spec:
     env: "dev"
   ports:
     - protocol: TCP
-      port: 8080
+      port: 80
       targetPort: 8080
