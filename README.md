@@ -29,7 +29,7 @@ Las tareas que se definieron son las siguientes:
 <img style="display:block;text-align:center" src="Images-Documentacion/tablero-kanban.png" width=60% title="tablero">
 </p>
 
-A continuación se muestra el progreso semana a semana de las tareas definidas anteriormente:
+A continuación se muestra el estado de nuestro Kanban a la hora de escribir este documento:
 
 ### Semana 1
 <p align="center">
