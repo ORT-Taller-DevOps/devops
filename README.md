@@ -32,6 +32,26 @@ Las tareas que se definieron son las siguientes:
 ## Infraestructura 
 Para la infraestructura se logró una modernización que destaca por adoptar un enfoque basado en microservicios, esta arquitectura nos permite un escalado mucho más eficiente tanto de forma vertical como horizontal. También se migró hacia una infraestructura en la nube, utilizando Terraform como principal herramienta para implementar una gestión de IaC (Infraestructure as Code) y además haciendo uso de los servicios que provee AWS.
 
+### Guía
+#### Pre requsito
+Para poder generar la infraestructura necesaria se debe de constar con los siguientes pre requisitos:
+- **Configurar las credenciales de AWS**
+- **Checkout al repositorio de Devops**
+- **Generar la infraestructura posicionados dentro de la carpeta Terraform**
+
+Respecto a la configuración de credenciales, las debemos obtener desde la consola de AWS y son las siguientes:
+
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- AWS_SESSION_TOKEN
+
+Luego de haber cumplido con estos pre requisitos y haber generado la infraestructura necesaria es de importancia saber que tanto el repositorio de Front-End como el de Back-End implementan CI/CD, esto quiere decir que a la hora de realizar un merge a una de las ramas estables (main - develop - release) estos se despliegan en su ambiente correspondiente (development - staging - production)
+
+Por último pero no menos importante, a la hora de desplegar Orders se debe de tener en cuenta lo siguiente:
+- Existe una dependencia con los otros servicios, los mismos deben de estar desplegados para que Orders funcione en su totalidad.
+- Se debe de adquirir el DNS de los Load Balancer.
+- Ingresar el DNS obtenido anteriormente en las variables correspondientes en el repositorio de Orders.
+
 ## Manejo de los repositorios y estrategias de ramas
 Para la solución del proyecto se implementaron dos tipos de repositorio
 
