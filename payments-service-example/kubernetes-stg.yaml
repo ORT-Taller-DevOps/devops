@@ -6,6 +6,8 @@ metadata:
     app: "payments-service-example"
     env: "stg"
 spec:
+  strategy:
+    type: Recreate
   replicas: 2
   selector:
     matchLabels:
