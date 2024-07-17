@@ -16,7 +16,7 @@ trabajo multidisciplinario con la tarea de promover y llevar a cabo este proceso
 automatización y escalabilidad para el despliegue de sus aplicaciones.
 
 ## Objetivos
-El objetivo principal de este trabajo está basado en aplicar todas las practicas, conocimientos y herramientas que se fueron dictando en lo que transcurrió del curso para implementar un flujo de desarrollo y despliegue continuo (CI / CD) para el empaquetado de FE y las 4 aplicaciones BE. Para esto el equipo va a contar un tablero de Kanban organizado por tareas para poder realizarles un mejor seguimiento, se busca desarrollar una infraestructura en la nube pública (AWS) utilizando IaC y un ciclo completo de integración continua y despliegue continuo (CI / CD). Además se buscará utilizar una herramienta de análisis de código estático en la cual se generará un informe pudiendo así tener información más detallada, identificando posibles problemas y/o mejoras que puedan servir para el código fuente de cara a futuro. También se relizarán pruebas extras a la aplicación de FE o las 4 aplicaciones de BE que pueden incluir pruebas de carga, pruebas automatizadas con herramientas como Postman y se registran los resultados para evaluar el rendimiento de la misma.
+El objetivo principal de este trabajo está basado en aplicar todas las practicas, conocimientos y herramientas que se fueron dictando en lo que transcurrió del curso para implementar un flujo de desarrollo y despliegue continuo (CI / CD) para el empaquetado de FE y las 4 aplicaciones BE. Para esto el equipo va a contar un tablero de Kanban organizado por tareas para poder realizarles un mejor seguimiento, se busca desarrollar una infraestructura en la nube pública (AWS) utilizando IaC y un ciclo completo de integración continua y despliegue continuo (CI / CD). Además se buscará utilizar una herramienta de análisis de código estático en la cual se generará un informe pudiendo así tener información más detallada, identificando posibles problemas y/o mejoras que puedan servir para el código fuente de cara a futuro. También se realizarán pruebas extras a la aplicación de FE o las 4 aplicaciones de BE que pueden incluir pruebas de carga, pruebas automatizadas con herramientas como Postman y se registran los resultados para evaluar el rendimiento de la misma.
 
 ## Propuesta
 Nuestra propuesta promueve un cambio efectivo en la forma de trabajo actual hacia un modelo basado en DevOps. Este modelo implementa una serie de prácticas, herramientas y metodologías con el objetivo de reducir el time-to-market y mejorar la calidad del software desarrollado internamente.
@@ -27,6 +27,28 @@ Para este punto que consideramos vital para el inicio de nuestro proyecto, nos b
 Las tareas que se definieron son las siguientes:
 <p align="center">
 <img style="display:block;text-align:center" src="Images-Documentacion/tablero-kanban.png" width=60% title="tablero">
+</p>
+
+A continuación se muestra el progreso semana a semana de las tareas definidas anteriormente:
+
+### Semana 1
+<p align="center">
+<img style="display:block;text-align:center" src="Images-Documentacion/semana-1.png" width=100% title="tablero">
+</p>
+
+### Semana 2
+<p align="center">
+<img style="display:block;text-align:center" src="Images-Documentacion/semana-2.png" width=100% title="tablero">
+</p>
+
+### Semana 3
+<p align="center">
+<img style="display:block;text-align:center" src="Images-Documentacion/semana-3.png" width=100% title="tablero">
+</p>
+
+### Semana 4
+<p align="center">
+<img style="display:block;text-align:center" src="Images-Documentacion/semana-4.png" width=100% title="tablero">
 </p>
 
 ## Infraestructura 
