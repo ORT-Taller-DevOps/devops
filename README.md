@@ -37,7 +37,7 @@ Para la solución del proyecto se implementaron dos tipos de repositorio
 
 - **Repositorios de los microservicios:** Este repositorio es el que contiene el desarrollo de los microservicios y los archivos que forman el ciclo de Integración Continua. La estrategia elegida para los microservicios fue GitFlow en el cual nos basamos en 3 ramas estables (main - develop - release).
 <p align="center">
-<img style="display:block;text-align:center" src="Images-Documentacion/Gitflow-diagrama-v2.png" width=60% title="gitflow">
+<img style="display:block;text-align:center" src="Images-Documentacion/Gitflow-diagrama-v3.png" width=60% title="gitflow">
 </p>
 
 - **Repositorios de devops:** Este repositorio es el que contiene los archivos del código que genera la infraestructura y también los que están relacionados al ciclo de Continuous Deployment (CD). En este caso especifico el equipo optó por utilizar una estrategia Trunk Based en la cual mantenemos una única rama estable (main) y ramas a demanda.
