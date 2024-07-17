@@ -26,8 +26,8 @@ spec:
           image: "894577096821.dkr.ecr.us-east-1.amazonaws.com/orders-service-example:latest-prod"
           imagePullPolicy: Always
           ports:
-              - containerPort: 8080
-                hostPort: 8080
+              - containerPort: 8083
+                hostPort: 8083
           resources:
             requests:
               memory: 256Mi
@@ -38,19 +38,19 @@ spec:
           readinessProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: 8083
             initialDelaySeconds: 5
             periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: 8083
             initialDelaySeconds: 5
             periodSeconds: 10
           startupProbe:
             httpGet:
               path: /health
-              port: 8080
+              port: 8083
             initialDelaySeconds: 30
             periodSeconds: 10
 
@@ -61,7 +61,7 @@ metadata:
   name: "orders-service-example"
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: /health
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "8080"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "8083"
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: http
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "60"
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "120"
@@ -76,4 +76,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: 8083

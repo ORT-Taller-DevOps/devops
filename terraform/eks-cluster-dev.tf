@@ -6,9 +6,6 @@ resource "aws_eks_cluster" "eks_cluster_dev" {
     subnet_ids = [
       "subnet-00472f5a3c442297d",
       "subnet-0a5de4b5eb1a44c74",
-      "subnet-08d3a1aaa06749b4f",
-      "subnet-0bf6ca46c41a0c9ad",
-      "subnet-013d3ef8fbd090b6e",
     ]
   }
 }
@@ -26,12 +23,12 @@ resource "aws_eks_node_group" "eks_nodegroup_dev" {
   }
 
   scaling_config {
-    desired_size = 2
-    max_size     = 3
-    min_size     = 1
+    desired_size = 8
+    max_size     = 12
+    min_size     = 4
   }
 
   update_config {
-    max_unavailable = 1
+    max_unavailable = 4
   }
 }
