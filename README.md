@@ -8,21 +8,16 @@
 </div>
 
 ## Presentación del problema
-Una empresa del sector retail desea modernizar la forma en que desarrollan y realizan el delivery del
-software de su plataforma. Para esto, uno de sus "C-Levels" propone impulsar un modelo DevOps con el fin
-de mejorar el time-to-market y calidad del software desarrollado in-house. Se ha conformado un equipo de
-trabajo multidisciplinario con la tarea de promover y llevar a cabo este proceso de modernización a las
-áreas de desarrollo, calidad y operación. Además, la empresa tiene interés en explorar estrategias de
-automatización y escalabilidad para el despliegue de sus aplicaciones.
+Una empresa del sector retail desea modernizar la forma en que desarrollan y realizan el delivery del software de su plataforma. Para esto, uno de sus "C-Levels" propone impulsar un modelo DevOps con el fin de mejorar el time-to-market y la calidad del software desarrollado in-house. Se ha conformado un equipo de trabajo multidisciplinario con la tarea de promover y llevar a cabo este proceso de modernización en las áreas de desarrollo, calidad y operación. Además, la empresa tiene interés en explorar estrategias de automatización y escalabilidad para el despliegue de sus aplicaciones.
 
 ## Objetivos
-El objetivo principal de este trabajo está basado en aplicar todas las practicas, conocimientos y herramientas que se fueron dictando en lo que transcurrió del curso para implementar un flujo de desarrollo y despliegue continuo (CI / CD) para el empaquetado de FE y las 4 aplicaciones BE. Para esto el equipo va a contar un tablero de Kanban organizado por tareas para poder realizarles un mejor seguimiento, se busca desarrollar una infraestructura en la nube pública (AWS) utilizando IaC y un ciclo completo de integración continua y despliegue continuo (CI / CD). Además se buscará utilizar una herramienta de análisis de código estático en la cual se generará un informe pudiendo así tener información más detallada, identificando posibles problemas y/o mejoras que puedan servir para el código fuente de cara a futuro. También se realizarán pruebas extras a la aplicación de FE o las 4 aplicaciones de BE que pueden incluir pruebas de carga, pruebas automatizadas con herramientas como Postman y se registran los resultados para evaluar el rendimiento de la misma.
+El objetivo principal de este trabajo está basado en aplicar todas las prácticas, conocimientos y herramientas que se brindaron durante el curso para implementar un flujo de desarrollo y despliegue continuo (CI/CD) para el empaquetado de FE y las 4 aplicaciones BE. Para esto, el equipo contará con un tablero de Kanban organizado por tareas para poder realizar un mejor seguimiento. Se busca desarrollar una infraestructura en la nube pública (AWS) utilizando IaC y un ciclo completo de integración continua y despliegue continuo (CI/CD). Además, se buscará utilizar una herramienta de análisis de código estático en la cual se generará un informe, pudiendo así tener información más detallada, identificando posibles problemas y/o mejoras que puedan servir para el código fuente de cara al futuro. También se realizarán pruebas extra a la aplicación de FE y las 4 aplicaciones de BE, que pueden incluir pruebas de carga, pruebas automatizadas con herramientas como Postman y se registrarán los resultados para evaluar el rendimiento de las mismas.
 
 ## Propuesta
 Nuestra propuesta promueve un cambio efectivo en la forma de trabajo actual hacia un modelo basado en DevOps. Este modelo implementa una serie de prácticas, herramientas y metodologías con el objetivo de reducir el time-to-market y mejorar la calidad del software desarrollado internamente.
 
 ## Organización de tareas
-Para este punto que consideramos vital para el inicio de nuestro proyecto, nos basamos en un tablero Kanban que nos provee la herramienta de Git. Gracias a esto pudimos obtener más claridad en cuanto a las tareas que se iban a realizar por Sprint y el tiempo que llevaría cada una de ellas.
+Para este punto, que consideramos vital para el inicio de nuestro proyecto, nos basamos en un tablero Kanban que nos provee Github. Gracias a esto, pudimos obtener más claridad en cuanto a las tareas que se iban a realizar por Sprint y el tiempo que llevaría cada una de ellas.
 
 Las tareas que se definieron son las siguientes:
 <p align="center">
@@ -51,13 +46,13 @@ A continuación se muestra el estado de nuestro Kanban a la hora de escribir est
 <img style="display:block;text-align:center" src="Images-Documentacion/semana-4.png" width=100% title="tablero">
 </p>
 
-## Infraestructura 
-Para la infraestructura se logró una modernización que destaca por adoptar un enfoque basado en microservicios, esta arquitectura nos permite un escalado mucho más eficiente tanto de forma vertical como horizontal. También se migró hacia una infraestructura en la nube, utilizando Terraform como principal herramienta para implementar una gestión de IaC (Infraestructure as Code) y además haciendo uso de los servicios que provee AWS.
+## Infraestructura
+Para la infraestructura se logró una modernización que destaca por adoptar un enfoque basado en microservicios. Esta arquitectura nos permite un escalado mucho más eficiente tanto de forma vertical como horizontal. También se migró hacia una infraestructura en la nube, utilizando Terraform como principal herramienta para implementar una gestión de IaC (Infraestructure as Code) y además haciendo uso de los servicios que provee AWS.
 
 ### Guía
-#### Pre requsito
-Para poder generar la infraestructura necesaria se debe de constar con los siguientes pre requisitos:
-- **Configurar las credenciales de AWS**
+#### Pre-requsitos
+Para poder generar la infraestructura necesaria, se deben cumplir los siguientes pre-requisitos:
+- **Las credenciales de AWS deben estar configuradas** 
 - **Checkout al repositorio de Devops**
 - **Generar la infraestructura posicionados dentro de la carpeta Terraform**
 
@@ -81,18 +76,18 @@ public class HealthCheckEndpoint {
 }
 ```
 
-Respecto a la configuración de credenciales, las debemos obtener desde la consola de AWS y son las siguientes:
+Las credenciales de AWS que se deben obtener son: el Access Key ID, Secret Access Key, y el Session Token.  
+Una vez obtenidas, se deben generar los siguientes secrets en los repositorios de back-end y front-end, con sus respectivos valores:
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_SESSION_TOKEN`
 
-- AWS_ACCESS_KEY_ID
-- AWS_SECRET_ACCESS_KEY
-- AWS_SESSION_TOKEN
-
-Luego de haber cumplido con estos pre requisitos y haber generado la infraestructura necesaria es de importancia saber que tanto el repositorio de Front-End como el de Back-End implementan CI/CD, esto quiere decir que a la hora de realizar un merge a una de las ramas estables (main - develop - release) estos se despliegan en su ambiente correspondiente (development - staging - production)
+Luego de haber cumplido con estos pre requisitos y haber generado la infraestructura necesaria es de importancia saber que tanto el repositorio de Front-End como el de Back-End implementan CI/CD. Esto quiere decir que, a la hora de realizar un merge a una de las ramas estables (development, release o main), el nuevo código será automáticamente desplegado en su ambiente correspondiente (development, staging o production, respectivamente).
 
 Por último pero no menos importante, a la hora de desplegar Orders se debe de tener en cuenta lo siguiente:
 - Existe una dependencia con los otros servicios, los mismos deben de estar desplegados para que Orders funcione en su totalidad.
-- Se debe de adquirir el DNS de los Load Balancer.
-- Ingresar el DNS obtenido anteriormente en las variables correspondientes en el repositorio de Orders.
+- Se debe adquirir el DNS de los Load Balancer.
+- Ingresar los DNS obtenidos anteriormente en las variables correspondientes en el repositorio de Orders.
 
 ## Manejo de los repositorios y estrategias de ramas
 Para la solución del proyecto se implementaron dos tipos de repositorio
@@ -126,15 +121,15 @@ A continuación se presenta un ejemplo de los escaneos corridos:
 </p>
 
 ## Prueba extra con Postman
-El equipo realizó una etapa de prueba extra como demandaba la letra del proyecto, utilizando Postman para las aplicaciones de backend. Se creó una colección la cual tiene requests a los 4 microservicios, en el caso de productos se testearon los dos endpoints (GET Producto y GET Productos) debido a que se podían llamar de esas dos maneras quedando así un total de 5 requests en la colección.
+El equipo realizó una etapa de pruebas extra, utilizando Postman para las aplicaciones de backend. Se creó una colección de llamadas HTTP, la cual interactúa con los endpoints de los 4 microservicios.
 
-En estas pruebas el equipo validó que el tipo de contenido sea el esperado, también que el tiempo de respuesta sea menor a 500ms y tanto el body cómo el código sean los que esperamos. Además se validó que cada respuesta contenga sus campos requeridos (este test varía según el endpoint al que se hace la llamada).
+En estas pruebas el equipo validó que el tipo de contenido sea el esperado, que el tiempo de respuesta sea menor a 500ms y que tanto el body cómo el código sean los que esperamos. Además se validó que cada respuesta contenga sus campos requeridos.
 
-A continuación les dejo los tests realizados más en detalle:
+El siguiente es un ejemplo de tests:
 
-```
 ### Test realizados al GET de Productos: "/products/123"
 
+```
 // La respuesta debe tener el tipo de contenido correcto
 pm.test("Response must have the correct Content-Type", () => {
     pm.response.to.have.header("Content-Type");
