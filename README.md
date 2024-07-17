@@ -61,6 +61,26 @@ Para poder generar la infraestructura necesaria se debe de constar con los sigui
 - **Checkout al repositorio de Devops**
 - **Generar la infraestructura posicionados dentro de la carpeta Terraform**
 
+También, debe asegurarse de que los servicios back-end cuenten con un endpoint `GET /health`. De otra manera, al ser deployados estos fallarán los health checks y la instancia será deshabilitada.  
+Un ejemplo de código que puede añadir es el siguiente:
+```java
+package uy.edu.ort.devops.paymentsserviceexample.endpoints; // <-- Asegúrese de cambiar acordemente
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/health")
+public class HealthCheckEndpoint {
+
+    @GetMapping()
+    public String healthCheck() {
+        return "OK";
+    }
+}
+```
+
 Respecto a la configuración de credenciales, las debemos obtener desde la consola de AWS y son las siguientes:
 
 - AWS_ACCESS_KEY_ID
