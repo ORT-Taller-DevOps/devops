@@ -6,4 +6,4 @@ RUN mvn package -DskipTests
 FROM openjdk:8-jdk-alpine
 COPY --from=package /target/orders-service-example-0.0.1-SNAPSHOT.jar /app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","-Xmx256m","/app.jar", "PAYMENTS-SERVICE-ENDPOINT", "PRODUCTS-SERVICE-ENDPOINT", "SHIPPING-SERVICE-ENDPOINT"]
+ENTRYPOINT ["java","-jar","/app.jar", "PAYMENTS-SERVICE-ENDPOINT", "PRODUCTS-SERVICE-ENDPOINT", "SHIPPING-SERVICE-ENDPOINT"]
