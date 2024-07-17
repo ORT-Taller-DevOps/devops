@@ -80,7 +80,7 @@ A continuación se presenta un ejemplo de los escaneos corridos:
 
 #### shipping-service-example
 <p align="center">
-<img src="Images-Documentacion/shipping-sonar.PNG" width=100% title="shipping">
+<img src="Images-Documentacion/shipping-sonar.png" width=100% title="shipping">
 </p>
 
 ## Prueba extra con Postman
