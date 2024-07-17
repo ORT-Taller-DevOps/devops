@@ -44,16 +44,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: payments-service-example
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+  name: "payments-service-example"
 spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Local
   selector:
-    app: payments-service-example
+    app: "payments-service-example"
     env: "stg"
   ports:
     - protocol: TCP
-      port: 80
+      port: 8080
       targetPort: 8080
-  type: LoadBalancer
