@@ -63,8 +63,8 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: /health
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "8080"
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: http
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "20"
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "50"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "60"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "120"
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "10"
     service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: "2"
 spec:
