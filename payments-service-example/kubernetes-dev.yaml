@@ -11,7 +11,6 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: "payments-service-example"
       env: "dev"
   template:
     metadata:
@@ -20,7 +19,6 @@ spec:
         env: "dev"
     spec:
       nodeSelector:
-        app: "payments-service-example"
         env: "dev"
       containers:
         - name: "payments-service-example"
