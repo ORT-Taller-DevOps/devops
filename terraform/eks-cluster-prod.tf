@@ -14,21 +14,23 @@ resource "aws_eks_cluster" "eks_cluster_prod" {
 }
 
 resource "aws_eks_node_group" "eks_nodegroup_prod" {
+  depends_on      = [aws_eks_cluster.eks_cluster_prod]
   provider        = aws.aws_provider
   cluster_name    = aws_eks_cluster.eks_cluster_prod.name
   node_group_name = "node_group_prod"
   node_role_arn   = aws_eks_cluster.eks_cluster_prod.role_arn
   subnet_ids      = aws_eks_cluster.eks_cluster_prod.vpc_config[0].subnet_ids
   capacity_type   = "ON_DEMAND"
-  instance_types  = ["t3.micro"]
   labels = {
     env = "prod"
   }
+
   scaling_config {
     desired_size = 2
-    max_size     = 2
+    max_size     = 3
     min_size     = 1
   }
+
   update_config {
     max_unavailable = 1
   }

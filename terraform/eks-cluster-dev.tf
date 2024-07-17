@@ -24,7 +24,7 @@ resource "aws_eks_node_group" "eks_nodegroup_dev" {
   labels = {
     env = "dev"
   }
-  
+
   scaling_config {
     desired_size = 2
     max_size     = 3

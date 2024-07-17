@@ -14,21 +14,23 @@ resource "aws_eks_cluster" "eks_cluster_stg" {
 }
 
 resource "aws_eks_node_group" "eks_nodegroup_stg" {
+  depends_on      = [aws_eks_cluster.eks_cluster_stg]
   provider        = aws.aws_provider
   cluster_name    = aws_eks_cluster.eks_cluster_stg.name
   node_group_name = "node_group_stg"
   node_role_arn   = aws_eks_cluster.eks_cluster_stg.role_arn
   subnet_ids      = aws_eks_cluster.eks_cluster_stg.vpc_config[0].subnet_ids
   capacity_type   = "ON_DEMAND"
-  instance_types  = ["t3.micro"]
   labels = {
     env = "stg"
   }
+
   scaling_config {
     desired_size = 2
-    max_size     = 2
+    max_size     = 3
     min_size     = 1
   }
+
   update_config {
     max_unavailable = 1
   }
