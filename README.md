@@ -64,7 +64,7 @@ A continuación se presenta un ejemplo de los escaneos corridos:
 </p>
 
 ## Prueba extra con Postman
-El equipo realizó una etapa de prueba extra como demandaba la letra del proyecto, utilizando Postman para las aplicaciones de backend. Se utilizó la colección "MonolithToMicroservicesExample" proveeida por el docente en el repositorio del curso <b>"T04 - Arquitectura y Microservicios/Obligatorias/01-MonolithToMicroservices/MonolithToMicroservicesExample.postman_collection.json"</b>
+El equipo realizó una etapa de prueba extra como demandaba la letra del proyecto, utilizando Postman para las aplicaciones de backend. Se creó una colección la cual tiene requests a los 4 microservicios, en el caso de productos se testearon los dos endpoints (GET Producto y GET Productos) debido a que se podían llamar de esas dos maneras quedando así un total de 5 requests en la colección.
 
 En estas pruebas el equipo validó que el tipo de contenido sea el esperado, también que el tiempo de respuesta sea menor a 500ms y tanto el body cómo el código sean los que esperamos. Además se validó que cada respuesta contenga sus campos requeridos (este test varía según el endpoint al que se hace la llamada).
 
@@ -89,13 +89,21 @@ pm.test("Response time is less than 500ms", function () {
 });
 
 // La respuesta tiene los campos requeridos
-pm.test("Response contains required fields", function () {
-    var jsonData = pm.response.json();
-    pm.expect(jsonData).to.include.keys('id', 'name', 'stock', "description");
+pm.test("Response has expected properties", function () {
+    let responseJson = pm.response.json();
+
+    pm.expect(responseJson).to.be.an('array');
+
+    responseJson.forEach(item => {
+        pm.expect(item).to.have.property('id');
+        pm.expect(item).to.have.property('name');
+        pm.expect(item).to.have.property('stock');
+        pm.expect(item).to.have.property('description');
+    });
 });
 
-// La respuesta es correcta - codigo 200 y body
-pm.test("Rsponse must be correct", ()=>{
+// La respuesta es correcta 
+pm.test("Response must be correct", ()=>{
     pm.response.to.be.ok; 
     pm.response.to.be.withBody;
 })
