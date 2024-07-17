@@ -16,7 +16,7 @@ trabajo multidisciplinario con la tarea de promover y llevar a cabo este proceso
 automatización y escalabilidad para el despliegue de sus aplicaciones.
 
 ## Objetivos
-El objetivo principal de este trabajo está basado en aplicar todas las practicas, conocimientos y herramientas que se fueron dictando en lo que transcurrió del curso para implementar un flujo de desarrollo y despliegue continuo (CI / CD) para el empaquetado de FE y las 4 aplicaciones BE. Para esto el equipo va a contar un tablero de Kanban organizado por tareas para poder realizarles un mejor seguimiento, se busca desarrollar una infraestructura en la nube pública (AWS) utilizando IaC y un ciclo completo de integración continua y despliegue continuo (CI / CD). Además se buscará utilizar una herramienta de análisis de código estático en la cual se generará un informe pudiendo así tener información más detallada, identificando posibles problemas y/o mejoras que puedan servir para el código fuente de cara a futuro. También se relizarán pruebas extras a la aplicación de FE o las 4 aplicaciones de BE que pueden incluir pruebas de carga, pruebas automatizadas con herramientas como Postman y se registran los resultados para evaluar el rendimiento de la misma.
+El objetivo principal de este trabajo está basado en aplicar todas las practicas, conocimientos y herramientas que se fueron dictando en lo que transcurrió del curso para implementar un flujo de desarrollo y despliegue continuo (CI / CD) para el empaquetado de FE y las 4 aplicaciones BE. Para esto el equipo va a contar un tablero de Kanban organizado por tareas para poder realizarles un mejor seguimiento, se busca desarrollar una infraestructura en la nube pública (AWS) utilizando IaC y un ciclo completo de integración continua y despliegue continuo (CI / CD). Además se buscará utilizar una herramienta de análisis de código estático en la cual se generará un informe pudiendo así tener información más detallada, identificando posibles problemas y/o mejoras que puedan servir para el código fuente de cara a futuro. También se realizarán pruebas extras a la aplicación de FE o las 4 aplicaciones de BE que pueden incluir pruebas de carga, pruebas automatizadas con herramientas como Postman y se registran los resultados para evaluar el rendimiento de la misma.
 
 ## Propuesta
 Nuestra propuesta promueve un cambio efectivo en la forma de trabajo actual hacia un modelo basado en DevOps. Este modelo implementa una serie de prácticas, herramientas y metodologías con el objetivo de reducir el time-to-market y mejorar la calidad del software desarrollado internamente.
@@ -29,8 +29,50 @@ Las tareas que se definieron son las siguientes:
 <img style="display:block;text-align:center" src="Images-Documentacion/tablero-kanban.png" width=60% title="tablero">
 </p>
 
+A continuación se muestra el estado de nuestro Kanban a la hora de escribir este documento:
+
+### Semana 1
+<p align="center">
+<img style="display:block;text-align:center" src="Images-Documentacion/semana-1.png" width=100% title="tablero">
+</p>
+
+### Semana 2
+<p align="center">
+<img style="display:block;text-align:center" src="Images-Documentacion/semana-2.png" width=100% title="tablero">
+</p>
+
+### Semana 3
+<p align="center">
+<img style="display:block;text-align:center" src="Images-Documentacion/semana-3.png" width=100% title="tablero">
+</p>
+
+### Semana 4
+<p align="center">
+<img style="display:block;text-align:center" src="Images-Documentacion/semana-4.png" width=100% title="tablero">
+</p>
+
 ## Infraestructura 
 Para la infraestructura se logró una modernización que destaca por adoptar un enfoque basado en microservicios, esta arquitectura nos permite un escalado mucho más eficiente tanto de forma vertical como horizontal. También se migró hacia una infraestructura en la nube, utilizando Terraform como principal herramienta para implementar una gestión de IaC (Infraestructure as Code) y además haciendo uso de los servicios que provee AWS.
+
+### Guía
+#### Pre requsito
+Para poder generar la infraestructura necesaria se debe de constar con los siguientes pre requisitos:
+- **Configurar las credenciales de AWS**
+- **Checkout al repositorio de Devops**
+- **Generar la infraestructura posicionados dentro de la carpeta Terraform**
+
+Respecto a la configuración de credenciales, las debemos obtener desde la consola de AWS y son las siguientes:
+
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- AWS_SESSION_TOKEN
+
+Luego de haber cumplido con estos pre requisitos y haber generado la infraestructura necesaria es de importancia saber que tanto el repositorio de Front-End como el de Back-End implementan CI/CD, esto quiere decir que a la hora de realizar un merge a una de las ramas estables (main - develop - release) estos se despliegan en su ambiente correspondiente (development - staging - production)
+
+Por último pero no menos importante, a la hora de desplegar Orders se debe de tener en cuenta lo siguiente:
+- Existe una dependencia con los otros servicios, los mismos deben de estar desplegados para que Orders funcione en su totalidad.
+- Se debe de adquirir el DNS de los Load Balancer.
+- Ingresar el DNS obtenido anteriormente en las variables correspondientes en el repositorio de Orders.
 
 ## Manejo de los repositorios y estrategias de ramas
 Para la solución del proyecto se implementaron dos tipos de repositorio
@@ -60,11 +102,11 @@ A continuación se presenta un ejemplo de los escaneos corridos:
 
 #### shipping-service-example
 <p align="center">
-<img src="Images-Documentacion/shipping-sonar.PNG" width=100% title="shipping">
+<img src="Images-Documentacion/shipping-sonar.png" width=100% title="shipping">
 </p>
 
 ## Prueba extra con Postman
-El equipo realizó una etapa de prueba extra como demandaba la letra del proyecto, utilizando Postman para las aplicaciones de backend. Se utilizó la colección "MonolithToMicroservicesExample" proveeida por el docente en el repositorio del curso <b>"T04 - Arquitectura y Microservicios/Obligatorias/01-MonolithToMicroservices/MonolithToMicroservicesExample.postman_collection.json"</b>
+El equipo realizó una etapa de prueba extra como demandaba la letra del proyecto, utilizando Postman para las aplicaciones de backend. Se creó una colección la cual tiene requests a los 4 microservicios, en el caso de productos se testearon los dos endpoints (GET Producto y GET Productos) debido a que se podían llamar de esas dos maneras quedando así un total de 5 requests en la colección.
 
 En estas pruebas el equipo validó que el tipo de contenido sea el esperado, también que el tiempo de respuesta sea menor a 500ms y tanto el body cómo el código sean los que esperamos. Además se validó que cada respuesta contenga sus campos requeridos (este test varía según el endpoint al que se hace la llamada).
 
@@ -89,13 +131,21 @@ pm.test("Response time is less than 500ms", function () {
 });
 
 // La respuesta tiene los campos requeridos
-pm.test("Response contains required fields", function () {
-    var jsonData = pm.response.json();
-    pm.expect(jsonData).to.include.keys('id', 'name', 'stock', "description");
+pm.test("Response has expected properties", function () {
+    let responseJson = pm.response.json();
+
+    pm.expect(responseJson).to.be.an('array');
+
+    responseJson.forEach(item => {
+        pm.expect(item).to.have.property('id');
+        pm.expect(item).to.have.property('name');
+        pm.expect(item).to.have.property('stock');
+        pm.expect(item).to.have.property('description');
+    });
 });
 
-// La respuesta es correcta - codigo 200 y body
-pm.test("Rsponse must be correct", ()=>{
+// La respuesta es correcta 
+pm.test("Response must be correct", ()=>{
     pm.response.to.be.ok; 
     pm.response.to.be.withBody;
 })
