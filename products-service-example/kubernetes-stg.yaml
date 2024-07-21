@@ -23,7 +23,7 @@ spec:
         env: "stg"
       containers:
         - name: "products-service-example"
-          image: "894577096821.dkr.ecr.us-east-1.amazonaws.com/products-service-example:latest-stg"
+          image: "227416266472.dkr.ecr.us-east-1.amazonaws.com/products-service-example:latest-stg"
           imagePullPolicy: Always
           ports:
               - containerPort: 8081
